@@ -1,0 +1,2 @@
+docker run -it -d -p 27017:27017 --name mongodb-udemy-course -v $(pwd)/data/db:/data/db mongo --noauth
+docker exec -it mongodb-udemy-course mongo local
