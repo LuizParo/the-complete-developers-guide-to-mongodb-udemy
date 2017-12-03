@@ -33,10 +33,28 @@ describe('subdocuments', () => {
             })
             .then(user => User.findOne({ name }))
             .then(user => {
-                assert(user !== null);
                 assert(user.posts[0] !== undefined);
                 assert(user.posts[0].title === postTitle);
             })
+            .then(() => done())
+            .catch(done);
+    });
+
+    it('can remove an existing subdocument', done => {
+        const joe = new User({
+            name,
+            posts : [{ title : postTitle }]
+        });
+
+        joe.save()
+            .then(user => User.findOne({ name }))
+            .then(user => {
+                user.posts[0].remove()
+                return user;
+            })
+            .then(user => user.save())
+            .then(user => User.findOne({ name }))
+            .then(user => assert(user.posts[0] === undefined))
             .then(() => done())
             .catch(done);
     });

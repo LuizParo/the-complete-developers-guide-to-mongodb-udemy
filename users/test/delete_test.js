@@ -15,7 +15,8 @@ describe('deleting a user', () => {
         joe.remove()
             .then(user => User.findOne({ name }))
             .then(user => assert(user === null))
-            .then(() => done());
+            .then(() => done())
+            .catch(done);
     });
 
     it('class method remove', done => {
@@ -23,20 +24,23 @@ describe('deleting a user', () => {
         User.remove({ name })
             .then(user => User.findOne({ name }))
             .then(user => assert(user === null))
-            .then(() => done());
+            .then(() => done())
+            .catch(done);
     });
 
     it('class method findOneAndRemove', done => {
         User.findOneAndRemove({ name })
             .then(user => User.findOne({ name }))
             .then(user => assert(user === null))
-            .then(() => done());
+            .then(() => done())
+            .catch(done);
     });
 
     it('class method findByIdAndRemove', done => {
         User.findByIdAndRemove(joe._id)
             .then(user => User.findOne({ name }))
             .then(user => assert(user === null))
-            .then(() => done());
+            .then(() => done())
+            .catch(done);
     });
 });

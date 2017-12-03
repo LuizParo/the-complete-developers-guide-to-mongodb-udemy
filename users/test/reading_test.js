@@ -9,7 +9,8 @@ describe('Reading users out of the database', () => {
         joe = new User({ name });
 
         joe.save()
-            .then(data => done());
+            .then(data => done())
+            .catch(done);
     });
 
     it('finds all users with a name of joe', done => {
@@ -27,6 +28,7 @@ describe('Reading users out of the database', () => {
                 assert(typeof user !== 'undefined');
                 assert(user.name === name);
                 done();
-            });
+            })
+            .catch(done);
     });
 });
