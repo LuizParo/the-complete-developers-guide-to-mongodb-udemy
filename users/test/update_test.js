@@ -8,7 +8,7 @@ describe('updating users', () => {
     beforeEach(done => {
         joe = new User({
             name,
-            postCount : 0
+            likes : 0
         });
         joe.save()
             .then(user => done())
@@ -22,7 +22,7 @@ describe('updating users', () => {
                 assert(user !== null);
                 return user;
             })
-            .then(user => assert(newName === user.name))
+            .then(user => assert(newName === user.name));
     }
 
     it('instance type using set and save', done => {
@@ -75,16 +75,16 @@ describe('updating users', () => {
         .catch(done);
     });
 
-    xit('a user can have their postCount incremented by 1', done => {
+    it('a user can have their postCount incremented by 1', done => {
         User.update({ 
             name 
         }, { 
             $inc : {
-                postCount: 1 
+                likes: 1 
             } 
         })
         .then(user => User.findOne({ name }))
-        .then(user => assert(user.postCount === 1))
+        .then(user => assert(user.likes === 1))
         .then(() => done())
         .catch(done);
     });
