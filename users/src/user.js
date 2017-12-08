@@ -20,6 +20,11 @@ const UserSchema = new Schema({
     }]
 });
 
+UserSchema.pre('remove', function() {
+    const BlogPost = mongoose.model('blogPost');
+    //BlogPost.remove();
+});
+
 UserSchema
     .virtual('postCount')
     .get(function() {
