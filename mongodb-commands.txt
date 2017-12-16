@@ -1,0 +1,2 @@
+# Create an index for a field in a collection
+db.artists.createIndex({ name : "text" })
