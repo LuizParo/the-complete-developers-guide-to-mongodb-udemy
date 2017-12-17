@@ -5,3 +5,4 @@
 **/node_modules/
 **/.dpl/
 **/data
+**/npm-debug.log
