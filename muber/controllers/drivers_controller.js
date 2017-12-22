@@ -6,7 +6,8 @@ module.exports = {
     },
 
     create(req, res) {
-        console.log(req.body);
-        res.send({ hi : 'there' });
+        Driver.create(req.body)
+            .then(driver => res.status(201).send(driver))
+            .catch(err => res.status(400).send({error : err}));
     }
 };
